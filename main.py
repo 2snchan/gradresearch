@@ -3,12 +3,14 @@ import cv2
 def nothing():
     pass
 
+
+print(cv2.__version__)
 img_gray = cv2.imread('img.png', cv2.IMREAD_GRAYSCALE)
 
 cv2.namedWindow("Canny Edge")
+
 cv2.createTrackbar('low threshold', 'Canny Edge', 0, 1000, nothing)
 cv2.createTrackbar('high threshold', 'Canny Edge', 0, 1000, nothing)
-
 cv2.setTrackbarPos('low threshold', 'Canny Edge', 50)
 cv2.setTrackbarPos('high threshold', 'Canny Edge', 150)
 
@@ -26,4 +28,3 @@ while True:
         break
 
 cv2.destroyAllWindows()
-
