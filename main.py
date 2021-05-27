@@ -1,30 +1,14 @@
 import cv2
 
-def nothing():
-    pass
+src = cv2.imread("img.png", cv2.IMREAD_COLOR)
+gray = cv2.cvtColor(src, cv2.COLOR_BGR2GRAY)
 
+sobel = cv2.Sobel(gray, cv2.CV_8U, 1, 0, 3)
+laplacian = cv2.Laplacian(gray, cv2.CV_8U, ksize=3)
+canny = cv2.Canny(src, 100, 255)
 
-print(cv2.__version__)
-img_gray = cv2.imread('img.png', cv2.IMREAD_GRAYSCALE)
-
-cv2.namedWindow("Canny Edge")
-
-cv2.createTrackbar('low threshold', 'Canny Edge', 0, 1000, nothing)
-cv2.createTrackbar('high threshold', 'Canny Edge', 0, 1000, nothing)
-cv2.setTrackbarPos('low threshold', 'Canny Edge', 50)
-cv2.setTrackbarPos('high threshold', 'Canny Edge', 150)
-
-cv2.imshow("Original", img_gray)
-
-while True:
-
-    low = cv2.getTrackbarPos('low threshold', 'Canny Edge')
-    high = cv2.getTrackbarPos('high threshold', 'Canny Edge')
-
-    img_canny = cv2.Canny(img_gray, low, high)
-    cv2.imshow("Canny Edge", img_canny)
-
-    if cv2.waitKey(1)&0xFF == 27:
-        break
-
+cv2.imshow("sobel", sobel)
+cv2.imshow("laplacian", laplacian)
+cv2.imshow("canny", canny)
+cv2.waitKey()
 cv2.destroyAllWindows()
