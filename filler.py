@@ -5,6 +5,7 @@ from scipy import ndimage
 from skimage.feature import canny
 from skimage import morphology
 from skimage.filters import sobel as skimage_sobel
+
 src = cv2.imread("src/img.png", cv2.IMREAD_COLOR)
 gray = cv2.cvtColor(src, cv2.COLOR_BGR2GRAY)
 

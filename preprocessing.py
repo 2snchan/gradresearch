@@ -14,4 +14,3 @@ print(type(sobel))
 
 cv2.imshow("sobel", sobel)
 cv2.imshow("laplacian", laplacian)
-
