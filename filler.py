@@ -33,4 +33,5 @@ print(type(markers))
 print(type(laplacian))
 
 cv2.imshow("Scikit Image Sobel", elevation_map)
+cv2.imshow("Grayscale", gray)
 plt.show()

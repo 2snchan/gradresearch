@@ -3,14 +3,15 @@
 import cv2
 
 src = cv2.imread("src/img.png", cv2.IMREAD_COLOR)
+
 gray = cv2.cvtColor(src, cv2.COLOR_BGR2GRAY)
 
-gray = cv2.resize(gray, dsize=(640,480), interpolation=cv2.INTER_AREA)
+ret_adaptive = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 21, 5)
+s, ret_normal = cv2.threshold(gray, 100, 255, cv2.THRESH_BINARY)
+ret_adaptive = cv2.resize(ret_adaptive, dsize=(640,480), interpolation=cv2.INTER_AREA)
+ret_normal = cv2.resize(ret_normal, dsize=(640,480), interpolation=cv2.INTER_AREA)
 
-sobel = cv2.Sobel(gray, cv2.CV_8U, 1, 0, 3)
-laplacian = cv2.Laplacian(gray, cv2.CV_8U, ksize=3)
-
-print(type(sobel))
-
-cv2.imshow("sobel", sobel)
-cv2.imshow("laplacian", laplacian)
+cv2.imshow("Normal", ret_normal)
+cv2.imshow("Adaptive", ret_adaptive)
+cv2.waitKey()
+cv2.destroyAllWindows()
